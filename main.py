@@ -157,7 +157,7 @@ def write_count(count):
 
 def run():
     max_tasks = 10
-    total_tasks = 500
+    total_tasks = 550
     url = "https://t.me/podslushhhno/5?embed=1"
     goto_url = "https://bit.ly/3nYYtiY"
 
