@@ -157,9 +157,9 @@ def write_count(count):
 
 def run():
     max_tasks = 10
-    total_tasks = 550
-    url = "https://t.me/podslushhhno/5?embed=1"
-    goto_url = "https://bit.ly/3nYYtiY"
+    total_tasks = 300
+    url = "https://t.me/astrovedu/446?embed=1"
+    goto_url = "https://bit.ly/3qg4ZT5"
 
     # Читаем количество уже открытых ссылок
     opened_links = read_count()
@@ -172,28 +172,13 @@ def run():
 
     with ThreadPoolExecutor(max_workers=max_tasks) as executor:
         for _ in range(total_tasks - opened_links):
-            start = time.time()
+
             executor.submit(do_traffic, url, goto_url)
-            end = time.time()
-            times.append(end - start)
 
             # Увеличиваем счетчик открытых ссылок и записываем его в файл
             opened_links += 1
             write_count(opened_links)
 
-    avg_time = sum(times) / len(times)
-    print(f'Average time per task: {avg_time} seconds')
-
-    total_hours = 5
-    total_seconds = total_hours * 60 * 60
-
-    # Расчет времени задержки между задачами, чтобы распределить их равномерно на 5 часов
-    delay = total_seconds / total_tasks - avg_time
-
-    if delay < 0:
-        print('Warning: tasks cannot be evenly distributed within 5 hours with the current average time.')
-    else:
-        print(f'Suggested delay between tasks: {delay} seconds')
 
 
 if __name__=='__main__':
